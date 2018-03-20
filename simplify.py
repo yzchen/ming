@@ -22,12 +22,12 @@ print(args.directory)
 
 # for file name
 for filename in os.listdir(os.path.join('.', args.directory)):
-    os.rename(filename, Traditional2Simplified(filename))
+    os.rename(os.path.join(args.directory, filename), Traditional2Simplified(os.path.join(args.directory, filename)))
 
 # for file content
 for filename in os.listdir(os.path.join('.', args.directory)):
     if '.json' in filename:
-        with open(filename, 'r', encoding='utf-8') as f, open('./data/'+filename, 'w', encoding='utf-8') as fd:
+        with open(os.path.join(args.directory, filename), 'r', encoding='utf-8') as f, open('./data/'+filename, 'w', encoding='utf-8') as fd:
             lines = f.readlines()
             for i in range(len(lines)):
                 lines[i] = Traditional2Simplified(lines[i])
